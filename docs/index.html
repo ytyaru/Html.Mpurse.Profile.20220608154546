@@ -2,28 +2,54 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title></title>
-<meta name="description" content="">
+<title>mpurseのアドレスとSNSのプロフィールを紐付ける</title>
+<meta name="description" content="いずれ取引相関図を作るとき人を可視化するために。">
 <meta name="author" content="ytyaru">
 <link rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja">
 <link rel="icon" href="assets/image/avator.png">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/toot-dialog.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script src="./lib/tingle/0.16.0/tingle.js"></script>
+<link rel="stylesheet" href="./lib/tingle/0.16.0/tingle.css">
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">-->
+<link rel="stylesheet" type="text/css" href="./lib/toastify/1.11.2/min.css">
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>-->
+<script type="text/javascript" src="./lib/toastify/1.11.2/min.js"></script>
+<script src="js/toaster.js"></script>
+<script src="js/rest-client.js"></script>
+<script src="js/misskey-rest-client.js"></script>
+<script src="js/misskey-authorizer-oauth.js"></script>
+<script src="js/misskey-authorizer-miauth.js"></script>
+<script src="js/misskey-api-client.js"></script>
+<script src="js/misskey-note-button.js"></script>
+<script src="js/misskey-note-dialog.js"></script>
+<script src="js/webmention-requester.js"></script>
+
+<script src="js/mastodon-rest-client.js"></script>
+<script src="js/mastodon-authorizer.js"></script>
+<script src="js/mastodon-api-client.js"></script>
+<!--<script src="js/tooter.js"></script>-->
+<script src="js/toot-button.js"></script>
+<script src="js/toot-dialog.js"></script>
+<script src="js/comment.js"></script>
+<script src="js/tweet-button.js"></script>
+<script src="js/mention-section.js"></script>
+<script src="js/mpurse-send-button.js"></script>
+
 <script src="js/main.js"></script>
 </head>
 <body>
-    <p>１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０</p>
-    <footer>
-        <span>© 2021 ytyaru</span>
-        <a title="CC-BY-SA" \
-           href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja"
-           style="text-decoration: none;">
-            <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Cc.logo.circle.svg"></img>
-            <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Cc-by_new.svg"></img>
-            <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/2/29/Cc-sa.svg"></img>
-            <!--<img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/CC-BY-SA_icon.svg"></img>-->
-    </a></footer>
+
+<footer><a href="https://ytyaru.github.io/" title="著者"><img src="./asset/image/avator.png" width="64" height="64">ytyaru</a><mpurse-send-button to="MEHCqJbgiNERCH3bRAtNSSD9uxPViEX1nu" img="coin-monar"></mpurse-send-button><a href="https://ytyaru.github.io/Html.Mpurse.Api.20220517160403/setup.html" title="モナコインを使うには">？</a></footer>
+
+<tweet-button text="いいね！\n"></tweet-button>
+<toot-dialog domain="mstdn.jp pawoo.net" status="いいね！"></toot-dialog>
+<misskey-note-dialog domain="misskey.io misskey.dev" status="いいね！"></misskey-note-dialog>
+<mention-section></mention-section>
 </body>
 </html>
-<!-- https://coliss.com/articles/build-websites/operation/work/html-template-for-web-apps-or-sites.html -->
-<!-- https://coliss.com/articles/build-websites/operation/work/html5-template-for-2018.html -->
+
