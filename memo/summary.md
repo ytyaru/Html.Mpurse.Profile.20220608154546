@@ -71,7 +71,7 @@
 ```
 
 * `name`は表示名。もし存在すればuser名より優先して表示する
-* `username`はユーザID。これは確実に存在するはず
+* `username`はユーザID。これは確実に存在するはず。ただしサービスやアカウントによって違う可能性がある。どれを使うか決めるロジックも必要。
 * mpurseアドレス。長ったらしい英数字
 * ■はプロフィール設定しているサービスのアイコン
     * ■の下にはドメイン名を表示する
@@ -81,17 +81,62 @@
 # TSVイメージ
 
 ```
-mpurseアドレス,name,url,serviceDommain,serviceDommain,serviceDommain,...
+mpurseアドレス,name,url,gravatarHash,serviceType:serviceDommain:userId,serviceType:serviceDommain:userId,serviceType:serviceDommain:userId,...
 ```
 
 * name, urlはserviceDommainよりも優先したいもの
     * `name`は通常、最初に投稿されたserviceDomainのものを使う
     * `url`は通常、最初に投稿されたserviceDomainのものを使う
+* serviceTypeはmastodonかmisskeyかを区別するIDである
 
 　もし、`name`や`url`を直接指定したものに変えたいときは入力フォームで指定する。
 
 * serviceDomainの順序を変えたいときはどうしよう？
 * 削除したいときは？
+
+# JSONイメージ
+
+```javascript
+[
+    {
+        "address": "aaaaaaaaaaa",
+        "name": "",
+        "url": "",
+        "gravatarHash": "ggggggggg",
+        "mastodon": {
+            "mstdn.jp": ["userId"],
+            "pawoo.net": ["userId"],
+            "domain": ["userId"],
+        }
+        "misskey": {
+
+        }
+    }
+]
+```
+
+　アドレスをキーにする場合。こちらのほうがよさげ。
+
+```javascript
+{
+    "mpurseAddress": {
+        "name": "",
+        "url": "",
+        "avatar": "",
+        "gravatarHash": "ggggggggg",
+        "mastodon": {
+            "mstdn.jp": ["userId"],
+            "pawoo.net": ["userId"],
+            "domain": ["userId"],
+        },
+        "misskey": {
+            "misskey.io": ["userId"],
+            "misskey.dev": ["userId"],
+            "domain": ["userId"],
+        },
+    }
+}
+```
 
 # 投稿イメージ
 
@@ -120,4 +165,46 @@ domain3
 
 　指定したアドレスの設定を変更する。行位置と項目が紐づくことにする。変更しない場合は空白にする。削除するときは`***delete***`とする。domainは追加はできず順序を変えるだけ。もし存在するのに、ここに書かれていなければ削除される。
 　
+# 入力フォーム
+
+```
+[署名][mpurseアドレス]
+name        [name]
+url         [url]
+gravatar    [hash]
+mastodon
+  mstdn.jp  [username]
+  pawoo.net [username]
+  instance  [username]
+  [ + ][ instance domain or URL ]
+misskey
+  misskey.io  [username]
+  misskey.dev [username]
+  instance    [username]
+  [ + ][ instance domain or URL ]
+```
+
+# API
+
+## mastodon
+
+* `https://docs.joinmastodon.org/methods/accounts/`
+    * `https://${domain}/api/v1/accounts/${id}`
+* https://qiita.com/KEINOS/items/c501bd433aa84d0d0108
+
+```javascript
+```
+
+## misskey
+
+* `https://misskey.kurume-nct.com/api-doc#operation/auth/session/userkey`
+
+```javascript
+```
+
+```javascript
+```
+
+　まずは各サービスからプロフィール情報をゲットできるようにするのが先か。
+
 
